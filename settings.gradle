@@ -1,0 +1,1 @@
+include ':app', ':latty-annotations', ':latty-compiler', ':latty-core', ':latty-ec'
