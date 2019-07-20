@@ -16,7 +16,7 @@ public class ECapplication extends Application {
     public void onCreate() {
         super.onCreate();
         Latty.init(this)
-                .withApiHost("127.0.0.1")
+                .withApiHost("http://gank.io/")
                 .withIcon(new FontAwesomeModule())
                 .configure();
     }
