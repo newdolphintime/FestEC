@@ -1,10 +1,14 @@
 package com.paly.zv.latty.net;
 
+import android.content.Context;
+
 import com.paly.zv.latty.net.callback.IError;
 import com.paly.zv.latty.net.callback.IFailure;
 import com.paly.zv.latty.net.callback.IRequest;
 import com.paly.zv.latty.net.callback.ISuccess;
 import com.paly.zv.latty.net.callback.RetrofitCallbacks;
+import com.paly.zv.latty.ui.LatteLoader;
+import com.paly.zv.latty.ui.LoaderStyle;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -22,12 +26,16 @@ public class RestClient {
     private final IFailure FAILURE;
     private final IError ERROR;
     private final RequestBody REQUESTBODY;
+    private final LoaderStyle LOADER_STYLE;
+    private final Context CONTEXT;
 
     public RestClient(String url,
                       Map<String, Object> params,
                       IRequest request, ISuccess success,
                       IFailure failure, IError error,
-                      RequestBody requestBody) {
+                      RequestBody requestBody,
+                      LoaderStyle loaderStyle,
+                      Context context) {
         this.URL = url;
         PARAMS.putAll(params);
         this.IREQUEST = request;
@@ -35,18 +43,23 @@ public class RestClient {
         this.FAILURE = failure;
         this.ERROR = error;
         this.REQUESTBODY = requestBody;
+        this.LOADER_STYLE = loaderStyle;
+        this.CONTEXT = context;
     }
     public static RestClientBulider builder(){
         return new RestClientBulider();
     }
     private Callback<String> getRetrofitCallback(){
-        return new RetrofitCallbacks(IREQUEST,SUCCESS,FAILURE,ERROR);
+        return new RetrofitCallbacks(IREQUEST,SUCCESS,FAILURE,ERROR,LOADER_STYLE);
     }
     private void request (HttpMethod method){
         final RestService service = RestCreator.getRestService();
         Call<String> call = null;
         if(IREQUEST != null){
             IREQUEST.onRequestStart();
+        }
+        if(LOADER_STYLE != null){
+            LatteLoader.showloading(CONTEXT,LOADER_STYLE);
         }
         switch (method){
             case GET:

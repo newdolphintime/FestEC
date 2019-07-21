@@ -25,14 +25,16 @@ public class ExampleDelegate extends LatteDelegate {
 
     public void testNet() {
         RestClient.builder()
-                .url("2019/04/10").params("", "").
-                success(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
+                .url("2019/04/10")
+                .params("", "")
+                .loader(getContext())
+                .success(new ISuccess() {
+                            @Override
+                            public void onSuccess(String response) {
+                                Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
 
-                    }
-                })
+                            }
+                        })
                 .error(new IError() {
                     @Override
                     public void onError(int code, String reason) {
