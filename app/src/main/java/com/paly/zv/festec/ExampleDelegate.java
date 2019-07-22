@@ -25,7 +25,7 @@ public class ExampleDelegate extends LatteDelegate {
 
     public void testNet() {
         RestClient.builder()
-                .url("2019/04/10")
+                .url("http://gank.io/2019/04/10")
                 .params("", "")
                 .loader(getContext())
                 .success(new ISuccess() {

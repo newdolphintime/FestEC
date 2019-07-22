@@ -15,7 +15,7 @@ public final class Latty {
         return Configurator.getInstance();
 
     }
-    public static final HashMap<String,Object> getConfigurations(){
+    public static final HashMap<Object,Object> getConfigurations(){
         return Configurator.getInstance().getLatteConfigs();
     }
 

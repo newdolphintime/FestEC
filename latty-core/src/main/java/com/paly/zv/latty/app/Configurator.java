@@ -6,12 +6,15 @@ import com.joanzapata.iconify.Iconify;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import okhttp3.Interceptor;
+
 /**
  * Created by zhangwei on 2019/7/16.
  */
 
-public  class Configurator {
-    private static final HashMap<String,Object> LATTE_CONFIGS = new HashMap<>();
+public class Configurator {
+    private static final HashMap<Object, Object> LATTE_CONFIGS = new HashMap<>();
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
     //iconify初始化
     //////////////iconify代码初始化///////////////
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
@@ -24,26 +27,31 @@ public  class Configurator {
             }
         }
     }
+
     //初始化icon
     public final Configurator withIcon(IconFontDescriptor descriptor) {
         ICONS.add(descriptor);
         return this;
     }
+
     //////////////////////////////
-    private Configurator(){
+    private Configurator() {
 
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), false);
     }
+
     /////////懒汉式加载///////////
     public static class Holder {
         public static final Configurator INSTANCE = new Configurator();
 
     }
+
     public static Configurator getInstance() {
         return Holder.INSTANCE;
     }
+
     ////////////////////
-    final HashMap<String,Object> getLatteConfigs(){
+    final HashMap<Object, Object> getLatteConfigs() {
         return LATTE_CONFIGS;
     }
 
@@ -51,6 +59,7 @@ public  class Configurator {
         initIcons();
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), true);
     }
+
     //检查是否调用上面的方法初始化没有
     private void checkConfiguration() {
         final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigKeys.CONFIG_READY.name());
@@ -58,6 +67,7 @@ public  class Configurator {
             throw new RuntimeException("Configuration is not ready,call configure");
         }
     }
+
     @SuppressWarnings("unchecked")
     final <T> T getConfiguration(Enum<ConfigKeys> key) {
         checkConfiguration();
@@ -71,6 +81,19 @@ public  class Configurator {
     ////初始化host
     public final Configurator withApiHost(String host) {
         LATTE_CONFIGS.put(ConfigKeys.API_HOST.name(), host);
+        return this;
+    }
+
+    ////初始化interceptor
+    public final Configurator withInterceptors(Interceptor interceptor) {
+        INTERCEPTORS.add(interceptor);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTORS.name(), INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
+        INTERCEPTORS.addAll(interceptors);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTORS.name(), INTERCEPTORS);
         return this;
     }
 }

@@ -8,6 +8,7 @@ import com.paly.zv.latty.net.callback.IRequest;
 import com.paly.zv.latty.net.callback.ISuccess;
 import com.paly.zv.latty.ui.LoaderStyle;
 
+import java.io.File;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -17,7 +18,7 @@ import okhttp3.RequestBody;
 
 public class RestClientBulider {
     private String mURL;
-    private static final Map<String, Object> PARAMS = RestCreator.getParams();
+    private final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
     private IRequest mIREQUEST;
     private ISuccess mSUCCESS;
     private IFailure mFAILURE;
@@ -25,6 +26,11 @@ public class RestClientBulider {
     private RequestBody mRequestBody;
     private LoaderStyle mloaderStyle;
     private Context mcontext;
+    private File mFile;
+
+    private String mDownloadDir = null;
+    private String mExtension = null;
+    private String mName = null;
 
     //不允许外部NEW
     RestClientBulider() {
@@ -71,11 +77,37 @@ public class RestClientBulider {
         return this;
     }
 
+    public final RestClientBulider files(File file) {
+        this.mFile = file;
+        return this;
+    }
+
+    public final RestClientBulider files(String file) {
+        this.mFile = new File(file);
+        return this;
+    }
+    public final RestClientBulider name(String name) {
+        this.mName = name;
+        return this;
+    }
+
+    public final RestClientBulider dir(String dir) {
+        this.mDownloadDir = dir;
+        return this;
+    }
+
+    public final RestClientBulider extension(String extension) {
+        this.mExtension = extension;
+        return this;
+    }
+
     public final RestClientBulider loader(Context context, LoaderStyle loaderStyle) {
         this.mcontext = context;
         this.mloaderStyle = loaderStyle;
         return this;
     }
+
+
     public final RestClientBulider loader(Context context) {
         this.mcontext = context;
         this.mloaderStyle = LoaderStyle.BallSpinFadeLoaderIndicator;
@@ -83,7 +115,9 @@ public class RestClientBulider {
     }
 
     public final RestClient build() {
-        return new RestClient(this.mURL, this.PARAMS, this.mIREQUEST, this.mSUCCESS, this.mFAILURE, this.mERROR, this.mRequestBody, mloaderStyle, mcontext);
+        return new RestClient(this.mURL, this.PARAMS,this.mDownloadDir,this.mExtension,this.mName
+                ,this.mIREQUEST, this.mSUCCESS, this.mFAILURE, this.mERROR, this.mRequestBody,
+                mloaderStyle,this.mFile ,mcontext);
     }
 
 }
