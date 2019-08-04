@@ -1,6 +1,5 @@
 package com.paly.zv.latty.ui;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.Window;
@@ -9,7 +8,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatDialog;
 
 import com.paly.zv.latty.R;
-import com.paly.zv.latty.util.DimenUtil;
+import com.paly.zv.latty.util.dimen.DimenUtil;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;

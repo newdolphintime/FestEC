@@ -1,4 +1,4 @@
-package com.paly.zv.latty.util;
+package com.paly.zv.latty.util.file;
 
 import android.content.ContentResolver;
 import android.content.Context;

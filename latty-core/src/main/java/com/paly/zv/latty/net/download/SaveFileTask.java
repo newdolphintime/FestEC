@@ -7,7 +7,7 @@ import android.os.AsyncTask;
 import com.paly.zv.latty.app.Latty;
 import com.paly.zv.latty.net.callback.IRequest;
 import com.paly.zv.latty.net.callback.ISuccess;
-import com.paly.zv.latty.util.FileUtil;
+import com.paly.zv.latty.util.file.FileUtil;
 
 import java.io.File;
 import java.io.InputStream;

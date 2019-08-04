@@ -1,5 +1,7 @@
 package com.paly.zv.latty.net;
 
+import android.util.Log;
+
 import com.paly.zv.latty.app.ConfigKeys;
 import com.paly.zv.latty.app.Latty;
 
@@ -23,11 +25,13 @@ public class RestCreator {
                 (ArrayList<Interceptor>) Latty.getConfigurations().get(ConfigKeys.INTERCEPTORS.name());
 
         private static OkHttpClient.Builder addInterceptors() {
-            if (INTERCEPTORS != null && INTERCEPTORS.isEmpty()) {
+            if (INTERCEPTORS != null && !INTERCEPTORS.isEmpty()) {
                 for (Interceptor interceptor : INTERCEPTORS) {
                     BUILDER.addInterceptor(interceptor);
                 }
-            }
+                Log.d("记载了拦截器", "addInterceptors: ");
+            }else{
+            Log.d("没有记载了拦截器", Integer.toString(INTERCEPTORS.size()));}
             return BUILDER;
         }
 

@@ -1,5 +1,7 @@
 package com.paly.zv.latty.app;
 
+import android.util.Log;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -85,8 +87,9 @@ public class Configurator {
     }
 
     ////初始化interceptor
-    public final Configurator withInterceptors(Interceptor interceptor) {
+    public final Configurator withInterceptor(Interceptor interceptor) {
         INTERCEPTORS.add(interceptor);
+        Log.d("拦截器数量",Integer.toString( INTERCEPTORS.size()));
         LATTE_CONFIGS.put(ConfigKeys.INTERCEPTORS.name(), INTERCEPTORS);
         return this;
     }

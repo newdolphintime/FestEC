@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.paly.zv.latty.app.Latty;
+import com.paly.zv.latty.net.interceptors.DebugIntercepor;
 
 /**
  * Created by zhangwei on 2019/7/16.
@@ -16,8 +17,9 @@ public class ECapplication extends Application {
     public void onCreate() {
         super.onCreate();
         Latty.init(this)
-                .withApiHost("http://gank.io/")
+                .withApiHost("https://www.bilibili.com/")
                 .withIcon(new FontAwesomeModule())
+                .withInterceptor(new DebugIntercepor("13882735553418783435",R.raw.test))
                 .configure();
     }
 }

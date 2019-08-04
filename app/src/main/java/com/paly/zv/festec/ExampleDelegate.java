@@ -1,6 +1,7 @@
 package com.paly.zv.festec;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -25,12 +26,13 @@ public class ExampleDelegate extends LatteDelegate {
 
     public void testNet() {
         RestClient.builder()
-                .url("http://gank.io/2019/04/10")
+                .url("https://www.bilibili.com/bangumi/play/ep56485?from=search&seid=13882735553418783435")
                 .params("", "")
                 .loader(getContext())
                 .success(new ISuccess() {
                             @Override
                             public void onSuccess(String response) {
+                                Log.d("HAHAHAHA",response);
                                 Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
 
                             }
@@ -38,13 +40,13 @@ public class ExampleDelegate extends LatteDelegate {
                 .error(new IError() {
                     @Override
                     public void onError(int code, String reason) {
-
+                        Log.d("HAHAHAHA",reason);
                     }
                 })
                 .failure(new IFailure() {
                     @Override
                     public void onFailure() {
-
+                        Log.d("HAHAHAHA","失败");
                     }
                 }).build().get();
     }
