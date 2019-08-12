@@ -8,12 +8,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.paly.zv.latty.activitys.ProxyActivity;
 import com.paly.zv.latty.app.Latty;
 import com.paly.zv.latty.delegate.LatteDelegate;
+import com.paly.zv.latty.ec.launcher.LauncherDelegate;
 
 public class MainActivity extends ProxyActivity {
 
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new ExampleDelegate();
+        return new LauncherDelegate();
     }
 }
