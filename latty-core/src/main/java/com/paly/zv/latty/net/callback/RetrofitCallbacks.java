@@ -1,9 +1,10 @@
 package com.paly.zv.latty.net.callback;
 
 import android.os.Handler;
+import android.util.Log;
 
-import com.paly.zv.latty.ui.LatteLoader;
-import com.paly.zv.latty.ui.LoaderStyle;
+import com.paly.zv.latty.ui.loader.LatteLoader;
+import com.paly.zv.latty.ui.loader.LoaderStyle;
 
 
 import retrofit2.Call;
@@ -48,6 +49,7 @@ public class RetrofitCallbacks implements Callback<String> {
 
     @Override
     public void onFailure(Call<String> call, Throwable t) {
+        Log.d("失败",t.toString());
         if(FAILURE!=null){
             FAILURE.onFailure();
         }

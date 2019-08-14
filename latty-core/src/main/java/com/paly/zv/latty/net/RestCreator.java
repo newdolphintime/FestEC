@@ -31,7 +31,8 @@ public class RestCreator {
                 }
                 Log.d("记载了拦截器", "addInterceptors: ");
             }else{
-            Log.d("没有记载了拦截器", Integer.toString(INTERCEPTORS.size()));}
+//            Log.d("没有记载了拦截器", Integer.toString(INTERCEPTORS.size()));
+           }
             return BUILDER;
         }
 

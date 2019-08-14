@@ -8,11 +8,10 @@ import com.paly.zv.latty.net.callback.IRequest;
 import com.paly.zv.latty.net.callback.ISuccess;
 import com.paly.zv.latty.net.callback.RetrofitCallbacks;
 import com.paly.zv.latty.net.download.DownloadHandler;
-import com.paly.zv.latty.ui.LatteLoader;
-import com.paly.zv.latty.ui.LoaderStyle;
+import com.paly.zv.latty.ui.loader.LatteLoader;
+import com.paly.zv.latty.ui.loader.LoaderStyle;
 
 import java.io.File;
-import java.util.Map;
 import java.util.WeakHashMap;
 
 

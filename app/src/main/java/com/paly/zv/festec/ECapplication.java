@@ -17,9 +17,9 @@ public class ECapplication extends Application {
     public void onCreate() {
         super.onCreate();
         Latty.init(this)
-                .withApiHost("https://www.bilibili.com/")
+                .withApiHost("https://www.baidu.com/")
                 .withIcon(new FontAwesomeModule())
-                .withInterceptor(new DebugIntercepor("13882735553418783435",R.raw.test))
+                //.withInterceptor(new DebugIntercepor("13882735553418783435",R.raw.test))
                 .configure();
     }
 }

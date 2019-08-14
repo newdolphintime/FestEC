@@ -26,7 +26,7 @@ public class ExampleDelegate extends LatteDelegate {
 
     public void testNet() {
         RestClient.builder()
-                .url("https://www.bilibili.com/bangumi/play/ep56485?from=search&seid=13882735553418783435")
+                .url("http://mock.fulingjie.com/mock-android/data/user_profile.json")
                 .params("", "")
                 .loader(getContext())
                 .success(new ISuccess() {

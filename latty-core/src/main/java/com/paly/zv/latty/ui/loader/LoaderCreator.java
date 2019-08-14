@@ -1,4 +1,4 @@
-package com.paly.zv.latty.ui;
+package com.paly.zv.latty.ui.loader;
 
 
 import android.content.Context;

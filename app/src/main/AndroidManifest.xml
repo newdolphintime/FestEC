@@ -9,6 +9,7 @@
         android:name=".ECapplication"
         tools:replace="android:appComponentFactory"
         android:appComponentFactory="someString"
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

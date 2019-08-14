@@ -10,6 +10,8 @@ import androidx.appcompat.widget.AppCompatTextView;
 import com.paly.zv.latty.delegate.LatteDelegate;
 import com.paly.zv.latty.ec.R;
 import com.paly.zv.latty.ec.R2;
+import com.paly.zv.latty.ui.launcher.ScrollLauncherTag;
+import com.paly.zv.latty.util.storage.LattePreference;
 import com.paly.zv.latty.util.timer.BaseTimerTask;
 import com.paly.zv.latty.util.timer.ItimerListener;
 
@@ -29,6 +31,11 @@ public class LauncherDelegate extends LatteDelegate implements ItimerListener {
 
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerview() {
+        if (timer != null) {
+            timer.cancel();
+            timer=null;
+            checkIsShowSroll();
+        }
 
     }
 
@@ -48,6 +55,14 @@ public class LauncherDelegate extends LatteDelegate implements ItimerListener {
         initTimer();
     }
 
+    private void checkIsShowSroll(){
+        if(!LattePreference.getAppFlag(ScrollLauncherTag.HAD_FIRST_LAUNCHER_APP.name())){
+            start(new LauncherScrollDelegate(),SINGLETASK);
+        }else{
+            //检查用户是否登录了APP
+        }
+    }
+
     @Override
     public void onTimer() {
         getProxyActivity().runOnUiThread(new Runnable() {
@@ -61,6 +76,7 @@ public class LauncherDelegate extends LatteDelegate implements ItimerListener {
                     if (timer != null) {
                         timer.cancel();
                         timer=null;
+                        checkIsShowSroll();
                     }
                 }
             }
