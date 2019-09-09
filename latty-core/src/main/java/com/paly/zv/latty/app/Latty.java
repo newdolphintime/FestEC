@@ -1,6 +1,7 @@
 package com.paly.zv.latty.app;
 
 import android.content.Context;
+import android.os.Handler;
 
 import java.util.HashMap;
 import java.util.WeakHashMap;
@@ -22,4 +23,5 @@ public final class Latty {
     public static Context getApplicationContext() {
         return (Context) getConfigurations().get(ConfigKeys.APPLICATION_CONTEXT.name());
     }
+
 }
