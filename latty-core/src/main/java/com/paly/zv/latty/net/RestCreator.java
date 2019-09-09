@@ -1,6 +1,7 @@
 package com.paly.zv.latty.net;
 
 import android.util.Log;
+import android.view.View;
 
 import com.paly.zv.latty.app.ConfigKeys;
 import com.paly.zv.latty.app.Latty;
@@ -28,6 +29,7 @@ public class RestCreator {
             if (INTERCEPTORS != null && !INTERCEPTORS.isEmpty()) {
                 for (Interceptor interceptor : INTERCEPTORS) {
                     BUILDER.addInterceptor(interceptor);
+
                 }
                 Log.d("记载了拦截器", "addInterceptors: ");
             }else{

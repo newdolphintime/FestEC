@@ -3,8 +3,11 @@ package com.paly.zv.festec;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.stetho.Stetho;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.paly.zv.latty.app.Latty;
+import com.paly.zv.latty.ec.database.DabaseManager;
 import com.paly.zv.latty.net.interceptors.DebugIntercepor;
 
 /**
@@ -20,6 +23,9 @@ public class ECapplication extends Application {
                 .withApiHost("https://www.baidu.com/")
                 .withIcon(new FontAwesomeModule())
                 //.withInterceptor(new DebugIntercepor("13882735553418783435",R.raw.test))
+
                 .configure();
+        DabaseManager.getInstance().init(this);
+        Stetho.initializeWithDefaults(this);
     }
 }

@@ -1,7 +1,10 @@
 package com.paly.zv.latty.ec.sign;
 
+import android.app.Activity;
 import android.media.MediaCodec;
 import android.os.Bundle;
+import android.print.PrinterId;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 
@@ -22,6 +25,15 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class SignUpDelegate extends LatteDelegate {
+    private ISignListener iSignListener = null;
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if(activity instanceof ISignListener){
+            iSignListener = (ISignListener)activity;
+        }
+    }
+
     @BindView(R2.id.edit_name)
     TextInputEditText mName = null;
 
@@ -49,12 +61,16 @@ public class SignUpDelegate extends LatteDelegate {
             //https://www.bilibili.com/bangumi/play/ep56485?from=search&seid=13882735553418783435
             //http://mock.fulingjie.com/mock-android/data/user_profile.json
             RestClient.builder()
-                    .url("https://www.bilibili.com/bangumi/play/ep56485?from=search&seid=13882735553418783435")
-                    .params("", "")
+                    .url("http://mock.fulingjie.com/mock-android/data/user_profile.json")
+                    .params("name", mName.getText().toString())
+                    .params("email",mEmail.getText().toString())
+                    .params("phone",mPhone.getText().toString())
+                    .params("password",mPassword.getText().toString())
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-
+                            SignHandler.onSignUp(response,iSignListener);
+                            Log.d("存储成功","存储成功");
                         }
                     })
                     .build()

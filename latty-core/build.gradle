@@ -60,4 +60,9 @@ dependencies {
 
     api 'com.alibaba:fastjson:1.2.31'
 
+
+    //数据库依赖
+    api 'org.greenrobot:greendao-generator:3.2.2'
+    api 'org.greenrobot:greendao:3.2.2'
+
 }

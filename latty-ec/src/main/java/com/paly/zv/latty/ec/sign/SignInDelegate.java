@@ -1,5 +1,6 @@
 package com.paly.zv.latty.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -23,6 +24,15 @@ import butterknife.OnClick;
 
 public class SignInDelegate extends LatteDelegate {
 
+    private ISignListener iSignListener = null;
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if(activity instanceof ISignListener){
+            iSignListener = (ISignListener)activity;
+        }
+    }
+
 
     @BindView(R2.id.edit_email)
     TextInputEditText mEmail = null;
@@ -43,6 +53,7 @@ public class SignInDelegate extends LatteDelegate {
                         @Override
                         public void onSuccess(String response) {
                             Toast.makeText(getContext(),response,Toast.LENGTH_SHORT).show();
+                            SignHandler.onSignIn(response,iSignListener);
 
                         }
                     })
