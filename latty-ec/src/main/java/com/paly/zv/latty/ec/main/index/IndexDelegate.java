@@ -3,6 +3,7 @@ package com.paly.zv.latty.ec.main.index;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -14,7 +15,14 @@ import com.joanzapata.iconify.widget.IconTextView;
 import com.paly.zv.latty.bottom.BottomItemDelegate;
 import com.paly.zv.latty.ec.R;
 import com.paly.zv.latty.ec.R2;
+import com.paly.zv.latty.net.RestClient;
+import com.paly.zv.latty.net.callback.ISuccess;
+import com.paly.zv.latty.ui.recyler.ItemType;
+import com.paly.zv.latty.ui.recyler.MultipleItemEntity;
+import com.paly.zv.latty.ui.recyler.MutipleFields;
 import com.paly.zv.latty.ui.refresh.RefreshHandler;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 
@@ -42,6 +50,7 @@ public class IndexDelegate extends BottomItemDelegate {
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         initRefreshLayout();
+        refreshHandler.firstPage("http://mock.fulingjie.com/mock-android/api/");
 
     }
 
@@ -55,6 +64,21 @@ public class IndexDelegate extends BottomItemDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
         refreshHandler = new RefreshHandler(swipeRefreshLayout);
+
+        RestClient.builder()
+                .url("http://mock.fulingjie.com/mock-android/api/")
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        final IndexDataConverter converter = new IndexDataConverter();
+                        final ArrayList<MultipleItemEntity> list = converter.setJsonData(response).convert();
+                        final String image = list.get(1).getField(MutipleFields.IMAGE_URL);
+                        Toast.makeText(getContext(),image,Toast.LENGTH_SHORT).show();
+
+                    }
+                })
+                .build()
+                .get();
 
     }
 }
