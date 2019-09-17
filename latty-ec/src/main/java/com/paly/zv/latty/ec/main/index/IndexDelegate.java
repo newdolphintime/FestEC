@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -41,6 +42,11 @@ public class IndexDelegate extends BottomItemDelegate {
     @BindView(R2.id.et_serch_view)
     AppCompatEditText appCompatEditText = null;
 
+    private void initRecyclerView (){
+        final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),4);
+        mRecyclerView.setLayoutManager(gridLayoutManager);
+    }
+
     private void initRefreshLayout() {
         swipeRefreshLayout.setColorSchemeResources(android.R.color.darker_gray, android.R.color.holo_blue_bright);
         swipeRefreshLayout.setProgressViewOffset(true, 120, 300);
@@ -50,6 +56,7 @@ public class IndexDelegate extends BottomItemDelegate {
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         initRefreshLayout();
+        initRecyclerView();
         refreshHandler.firstPage("http://mock.fulingjie.com/mock-android/api/");
 
     }
@@ -63,22 +70,9 @@ public class IndexDelegate extends BottomItemDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
-        refreshHandler = new RefreshHandler(swipeRefreshLayout);
+        refreshHandler =  RefreshHandler.create(swipeRefreshLayout,mRecyclerView,new IndexDataConverter());
 
-        RestClient.builder()
-                .url("http://mock.fulingjie.com/mock-android/api/")
-                .success(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        final IndexDataConverter converter = new IndexDataConverter();
-                        final ArrayList<MultipleItemEntity> list = converter.setJsonData(response).convert();
-                        final String image = list.get(1).getField(MutipleFields.IMAGE_URL);
-                        Toast.makeText(getContext(),image,Toast.LENGTH_SHORT).show();
 
-                    }
-                })
-                .build()
-                .get();
 
     }
 }
