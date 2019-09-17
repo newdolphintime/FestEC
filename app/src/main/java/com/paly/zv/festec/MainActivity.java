@@ -15,6 +15,8 @@ import com.paly.zv.latty.ec.sign.SignUpDelegate;
 import com.paly.zv.latty.ui.launcher.ILauncherListener;
 import com.paly.zv.latty.ui.launcher.OnLauncherFinishTag;
 
+import qiu.niorgai.StatusBarCompat;
+
 public class MainActivity extends ProxyActivity implements ISignListener, ILauncherListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,6 +25,9 @@ public class MainActivity extends ProxyActivity implements ISignListener, ILaunc
         if (actionBar != null) {
             actionBar.hide();
         }
+
+        StatusBarCompat.translucentStatusBar(this,true);
+
     }
 
     @Override

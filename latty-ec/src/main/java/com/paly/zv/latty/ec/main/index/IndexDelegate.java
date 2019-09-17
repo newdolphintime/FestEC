@@ -1,5 +1,6 @@
 package com.paly.zv.latty.ec.main.index;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -16,8 +17,10 @@ import com.joanzapata.iconify.widget.IconTextView;
 import com.paly.zv.latty.bottom.BottomItemDelegate;
 import com.paly.zv.latty.ec.R;
 import com.paly.zv.latty.ec.R2;
+import com.paly.zv.latty.ec.main.ECBottomDelegate;
 import com.paly.zv.latty.net.RestClient;
 import com.paly.zv.latty.net.callback.ISuccess;
+import com.paly.zv.latty.ui.recyler.BaseDecoration;
 import com.paly.zv.latty.ui.recyler.ItemType;
 import com.paly.zv.latty.ui.recyler.MultipleItemEntity;
 import com.paly.zv.latty.ui.recyler.MutipleFields;
@@ -45,6 +48,9 @@ public class IndexDelegate extends BottomItemDelegate {
     private void initRecyclerView (){
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),4);
         mRecyclerView.setLayoutManager(gridLayoutManager);
+        mRecyclerView.addItemDecoration(BaseDecoration.create(Color.argb(1,1,1,1),5));
+        final ECBottomDelegate ecBottomDelegate = getParentDelegate();
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
 
     private void initRefreshLayout() {
