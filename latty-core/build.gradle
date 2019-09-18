@@ -71,7 +71,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
     //RecyclerView依赖
-    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
 
     //RecyclerView 分割线
     api 'com.choices.divider:RecyclerView_Divider:1.0.0'

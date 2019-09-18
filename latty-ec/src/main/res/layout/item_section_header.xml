@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="30dp">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:text="实例"
+        android:textColor="@color/we_chat_black"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:paddingLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/header"
+        android:gravity="center|left"
+        android:layout_weight="1"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:text="more>"
+        android:paddingRight="10dp"
+        android:layout_weight="1"
+        android:id="@+id/more"
+        android:gravity="center_vertical|right"
+        android:textColor="@color/we_chat_black"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        />
+
+</LinearLayout>

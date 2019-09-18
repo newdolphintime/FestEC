@@ -45,6 +45,8 @@ public class TransluncentBehavior extends CoordinatorLayout.Behavior<Toolbar> {
         distenceY += dy;
         final int targetHeight = child.getBottom();
 
+
+
         if (distenceY > 0 && distenceY <= targetHeight) {
             final float scale = (float) distenceY / targetHeight;
             final float alpha = scale * 255;
@@ -53,7 +55,10 @@ public class TransluncentBehavior extends CoordinatorLayout.Behavior<Toolbar> {
             child.setBackgroundColor(Color.rgb(RGB_VALUE.red(), RGB_VALUE.green(), RGB_VALUE.blue()));
         }else if (distenceY == 0){
             child.setBackgroundColor(Color.argb(0,RGB_VALUE.red(), RGB_VALUE.green(), RGB_VALUE.blue()));
+
         }
 
     }
+
+
 }
