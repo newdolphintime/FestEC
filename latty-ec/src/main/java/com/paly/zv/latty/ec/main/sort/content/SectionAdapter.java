@@ -2,16 +2,19 @@ package com.paly.zv.latty.ec.main.sort.content;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseSectionQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.paly.zv.latty.ec.R;
 
 import java.util.List;
 
-public class SectionAdapter extends BaseSectionQuickAdapter<SectionBean, BaseViewHolder> {
+public class SectionAdapter extends BaseSectionQuickAdapter<SectionBean, BaseViewHolder>
+implements BaseQuickAdapter.SpanSizeLookup{
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
      * some initialization data.
@@ -44,8 +47,13 @@ public class SectionAdapter extends BaseSectionQuickAdapter<SectionBean, BaseVie
                 .load(thumb).
                 diskCacheStrategy(DiskCacheStrategy.ALL).
                 dontAnimate().
-                centerCrop().
                 into(imageView);
 
+    }
+
+
+    @Override
+    public int getSpanSize(GridLayoutManager gridLayoutManager, int i) {
+        return 1;
     }
 }

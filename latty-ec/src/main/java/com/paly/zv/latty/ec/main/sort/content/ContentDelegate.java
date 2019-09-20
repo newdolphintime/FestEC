@@ -60,12 +60,20 @@ public class ContentDelegate extends LatteDelegate {
         );
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        initData();
+
 
 
     }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        initData();
+    }
+
     private void initData(){
         RestClient.builder().url("http://mock.fulingjie.com/mock-android/data/sort_content_data_1.json")
+                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
@@ -77,6 +85,7 @@ public class ContentDelegate extends LatteDelegate {
 
                     }
                 })
+
                 .build()
                 .get();
     }

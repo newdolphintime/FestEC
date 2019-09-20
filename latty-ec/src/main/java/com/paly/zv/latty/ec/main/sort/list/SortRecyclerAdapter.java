@@ -19,6 +19,8 @@ import com.paly.zv.latty.ui.recyler.MutipleFields;
 
 import java.util.List;
 
+import me.yokeyword.fragmentation.SupportHelper;
+
 
 public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
     /**
@@ -77,6 +79,7 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
                 if (!isClicked) {
                     line.setVisibility(View.INVISIBLE);
                     textView.setTextColor(Color.BLACK);
+                    itemview.setBackgroundColor(ContextCompat.getColor(mContext, R.color.item_background));
 
                 } else {
                     line.setVisibility(View.VISIBLE);
@@ -96,7 +99,7 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
 
     }
     private void switchContent(ContentDelegate delegate){
-        final LatteDelegate content = DELEGATE.findChildFragment(ContentDelegate.class);
+        final LatteDelegate content = SupportHelper.findFragment(DELEGATE.getChildFragmentManager(), ContentDelegate.class);
         if(content!=null){
             content.replaceFragment(delegate,false);
         }
