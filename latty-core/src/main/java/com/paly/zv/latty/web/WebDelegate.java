@@ -2,11 +2,14 @@ package com.paly.zv.latty.web;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewFragment;
 
 import androidx.annotation.Nullable;
 
+import com.paly.zv.latty.app.ConfigKeys;
+import com.paly.zv.latty.app.Latty;
 import com.paly.zv.latty.delegate.LatteDelegate;
 import com.paly.zv.latty.web.route.RouteKeys;
 
@@ -52,7 +55,9 @@ public abstract class WebDelegate extends LatteDelegate implements IwebViewIniti
                 webView = initializer.initWebView(webView);
                 webView.setWebViewClient(initializer.initWebViewClient());
                 webView.setWebChromeClient(initializer.initWebChromeClient());
-                webView.addJavascriptInterface(LatteWebInterface.create(this), "latte");
+                final String name = (String) Latty.getConfigurations().get(ConfigKeys.JAVASCRIPT_INTERFACE.name());
+                //Log.d("javascrtpi", name);
+                webView.addJavascriptInterface(LatteWebInterface.create(this), name);
 
                 mIswebViewAvailable = true;
 

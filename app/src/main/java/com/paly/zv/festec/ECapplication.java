@@ -9,6 +9,7 @@ import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.paly.zv.latty.app.Latty;
 import com.paly.zv.latty.ec.database.DabaseManager;
 import com.paly.zv.latty.net.interceptors.DebugIntercepor;
+import com.paly.zv.latty.web.event.TestEvent;
 
 /**
  * Created by zhangwei on 2019/7/16.
@@ -23,7 +24,8 @@ public class ECapplication extends Application {
                 .withApiHost("https://www.baidu.com/")
                 .withIcon(new FontAwesomeModule())
                 //.withInterceptor(new DebugIntercepor("13882735553418783435",R.raw.test))
-
+                .withWebEvent("test", new TestEvent())
+                .withJavascripInterface("latte")
                 .configure();
         DabaseManager.getInstance().init(this);
         Stetho.initializeWithDefaults(this);

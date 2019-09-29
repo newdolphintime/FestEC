@@ -1,10 +1,12 @@
 package com.paly.zv.latty.web;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 public class WebViewInitializer {
+    @SuppressLint("SetJavaScriptEnabled")
     public WebView createWebView(WebView webView){
 
         WebView.setWebContentsDebuggingEnabled(true);
@@ -29,6 +31,9 @@ public class WebViewInitializer {
         final String ua = settings.getUserAgentString();
 
         settings.setUserAgentString(ua+"Latte");
+
+        //设置可以使用JS
+        settings.setJavaScriptEnabled(true);
 
         settings.setBuiltInZoomControls(false);
         settings.setDisplayZoomControls(false);

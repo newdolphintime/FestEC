@@ -2,8 +2,12 @@ package com.paly.zv.latty.app;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
+import com.paly.zv.latty.web.event.Event;
+import com.paly.zv.latty.web.event.EventManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -97,6 +101,18 @@ public class Configurator {
     public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
         LATTE_CONFIGS.put(ConfigKeys.INTERCEPTORS.name(), INTERCEPTORS);
+        return this;
+    }
+
+    public Configurator withWebEvent(@NonNull String name, @NonNull Event event) {
+        final EventManager manager = EventManager.getTnstance();
+        manager.addEvent(name, event);
+        return this;
+    }
+
+
+    public Configurator withJavascripInterface(@NonNull String name){
+        LATTE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE.name(),name);
         return this;
     }
 }

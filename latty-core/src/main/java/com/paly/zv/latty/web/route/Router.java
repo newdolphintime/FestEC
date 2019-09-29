@@ -66,8 +66,9 @@ public class Router {
             loadLocalPage(webView, url);
         }
     }
-    public void loadPage(WebDelegate delegate,String url){
-        loadPage(delegate.getWebView(),url);
+
+    public void loadPage(WebDelegate delegate, String url) {
+        loadPage(delegate.getWebView(), url);
     }
 
     private void callPhone(Context context, String url) {
